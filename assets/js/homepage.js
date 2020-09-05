@@ -47,6 +47,18 @@ var displayRepos = function(repos, searchTerm) {
     titleEl.textContent = repoName;
     // Append to Container
     repoEl.appendChild(titleEl);
+    // Create a Status Element
+    var statusEl = document.createElement("span");
+    statusEl.classList = "flex-row align-center";
+    // Check if Current Repo Has Issues or Not
+    if (repos[i].open_issues_count > 0) {
+      statusEl.innerHTML = 
+      "<i class='fas fa-times status-icon icon-danger'></i>" + repos[i].open_issues_count + " issue(s)";
+    } else {
+      statusEl.innerHTML = "<i class='fas fa-check-square status-icon icon-success'></i>";
+    }
+    //Append to Container
+    repoEl.appendChild(statusEl);
     // Append Contaier to the DOM
     repoContainerEl.appendChild(repoEl);
   }
