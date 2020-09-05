@@ -36,6 +36,20 @@ var displayRepos = function(repos, searchTerm) {
   // Clear Old Content
   repoContainerEl.textContent = "";
   repoSearchTerm.textContent = searchTerm;
+  // Loop Over Repos
+  for (var i = 0; i < repos.length; i++) {
+    var repoName = repos[i].owner.login + "/" + repos[i].name;
+    // Create A Container For Each Repo
+    var repoEl = document.createElement("div");
+    repoEl.classList = "list-item flex-row justify-space-between align-center";
+    // Create a Span Element to Hold Repository Name
+    var titleEl = document.createElement("span");
+    titleEl.textContent = repoName;
+    // Append to Container
+    repoEl.appendChild(titleEl);
+    // Append Contaier to the DOM
+    repoContainerEl.appendChild(repoEl);
+  }
 };
 
 // EVENT LISTENERS
