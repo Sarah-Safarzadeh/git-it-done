@@ -58,7 +58,7 @@ var getRepoIssues = function (repo) {
       
           // check if api has paginated issues
           if (response.headers.get("Link")) {
-            console.log("repo has more than 30 issues");
+            displayWarning(repo);
           }
         });
       }
