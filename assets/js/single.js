@@ -1,3 +1,5 @@
+var issueContainerEl = document.querySelector("#issues-container");
+
 var getRepoIssues = function (repo) {
     console.log(repo);
     var apiUrl = "https://api.github.com/repos/" + repo + "/issues?direction=asc";
@@ -8,6 +10,10 @@ var getRepoIssues = function (repo) {
 
                 // Pass Response Data to DOM Function
                 displayIssues(data);
+                if (issues.length === 0) {
+                    issueContainerEl.textContent = "This repo has no open issues!";
+                    return;
+                }
                 for (var i = 0; i < issues.length; i++) {
 
                     // Create a Link Element to Take Users to The Issue On GitHub
@@ -35,6 +41,9 @@ var getRepoIssues = function (repo) {
 
                     // append to container
                     issueEl.appendChild(typeEl);
+
+                    // Append to Page
+                    issueContainerEl.appendChild(issuesEl);
                 }
             });
         } else {
